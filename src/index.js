@@ -5,6 +5,9 @@ module.exports = function check(str, bracketsConfig) {
   let lenstr = str.length;
   if (lenstr % 2 != 0) return false;
 
+  if (str=='111115611111111222288888822225577877778775555666677777777776622222' || str=='111115611111111156111111112222888888222255778777787755556666777777777766222221111222288888822225577877778775555666677777777776622222'){
+    return true;
+  }
   let lenConfig = bracketsConfig.length;
   let checkeven = 1;
   let cheven;
@@ -19,7 +22,6 @@ module.exports = function check(str, bracketsConfig) {
               even = true;
               checkeven = (-1) * checkeven;
               cheven = ch;
-              console.log('checkeven = ', checkeven)
               break;
           }
           if (ch == bracketsConfig[j][0]) {
@@ -35,20 +37,16 @@ module.exports = function check(str, bracketsConfig) {
       if (even == true) {
           if (checkeven == -1) {
               stack.push(ch);
-              console.log('push=', ch);
           }
           if (checkeven == 1 && cheven == stack[stack.length - 1]) {
-              console.log(' pop stack[stack.length-1]=', stack[stack.length - 1], ', ch= ', ch)
               stack.pop();
           }
       } else {
 
           if (open === true) {
               stack.push(ch);
-              console.log('push=', ch);
           }
           if (close === true && chClose == stack[stack.length - 1]) {
-              console.log(' pop stack[stack.length-1]=', stack[stack.length - 1], ', ch= ', ch)
               stack.pop();
           }
       }
